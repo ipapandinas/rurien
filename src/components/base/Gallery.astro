@@ -1,0 +1,68 @@
+---
+import { ImageList, ImageListItem } from "@mui/material";
+import { Image } from "astro:assets";
+
+import type { GalleryMedia } from "@/types";
+import MediaDialog from "./MediaDialog";
+
+interface Props {
+  medias: GalleryMedia[];
+  title: string;
+}
+
+const { medias, title } = Astro.props;
+
+const nbColumns = 2;
+---
+
+<div>
+  <h3 class="text-3xl font-bold">
+    <span class="text-[#0f172a]">#</span>{` ${title}`}
+  </h3>
+  <div class="hidden md:block">
+    <ImageList className="mt-4" variant="masonry" cols={2} gap={24}>
+      {
+        medias.map(({ image, title, size, technique }, idx) => (
+          <ImageListItem key={idx} sx={{ paddingBottom: "12px" }}>
+            <MediaDialog
+              title={title}
+              size={size}
+              technique={technique}
+              client:load
+            >
+              <Image
+                class="max-h-[70vh] w-auto mx-auto"
+                src={image}
+                alt={title}
+                loading="lazy"
+              />
+            </MediaDialog>
+          </ImageListItem>
+        ))
+      }
+    </ImageList>
+  </div>
+  <div class="md:hidden">
+    <ImageList className="mt-4" variant="masonry" cols={1} gap={24}>
+      {
+        medias.map(({ image, title, size, technique }, idx) => (
+          <ImageListItem key={idx} sx={{ paddingBottom: "12px" }}>
+            <MediaDialog
+              title={title}
+              size={size}
+              technique={technique}
+              client:load
+            >
+              <Image
+                class="max-h-[70vh] w-auto mx-auto"
+                src={image}
+                alt={title}
+                loading="lazy"
+              />
+            </MediaDialog>
+          </ImageListItem>
+        ))
+      }
+    </ImageList>
+  </div>
+</div>

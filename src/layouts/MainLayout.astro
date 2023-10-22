@@ -1,0 +1,50 @@
+---
+import type { InstagramLogoIcon } from "@radix-ui/react-icons";
+import { ViewTransitions } from 'astro:transitions';
+import { FileText, Instagram, Mail } from 'lucide-astro';
+import Header from "@/components/base/Header.astro";
+import { Button } from "@/components/ui/button"
+import "@/styles/globals.css";
+---
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Fuensanta R. Urien</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <Header />
+    <main class="flex flex-col items-center min-h-screen max-w-5xl mx-auto px-8 mt-8 mb-32">
+      <div class="text-center mb-16">
+        <div class="flex justify-center relative select-none">
+          <img class= "rounded-full overflow-hidden" src="/avatar.jpeg" width="200px" height="200px" />
+        </div>
+        <h1 class="text-xl font-bold leading-none mt-4">Fuensanta R. Urien</h1>
+        <h2 class="text-lg text-muted-foreground">Artist Painter</h2>
+        <div class="flex flex-col">
+          <a href="https://www.instagram.com/fuentxu" title="Contacto Instagram" target="_blank" rel="noopener">
+            <Button className="mt-4 w-40">
+              <Instagram className="mr-2 h-4 w-4" /> Instagram
+            </Button>
+          </a>
+          <a href="mailto:fuentxu64@gmail.com" title="Contacto Email">
+            <Button className="mt-4 w-40">
+              <Mail className="mr-2 h-4 w-4" /> Email
+            </Button>
+          </a>
+          <a href="/portfolio.pdf" title="Official Instagram" target="_blank" rel="noopener">
+            <Button className="mt-4 w-40">
+              <FileText className="mr-2 h-4 w-4" /> Portfolio PDF
+            </Button>
+          </a>
+      </div>
+      </div>
+      <slot/>
+    </main>
+  </body>
+</html>
